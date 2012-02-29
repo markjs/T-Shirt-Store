@@ -1,3 +1,3 @@
 <?php
 
-$base_request = "wp/";
+$base_request = "";

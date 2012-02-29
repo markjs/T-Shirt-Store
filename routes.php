@@ -4,20 +4,17 @@ $request = trim(substr($_SERVER['REQUEST_URI'],strlen($base_request)),"/");
 
 // Exception to match / to home page (index);
 if ($request == "") {
-	$request = "index";
+	$request = "homepage";
 }
 
-// Check the page is registered with an XML file
-$page_file = "pages/".$request.".xml";
+// Check the page exists with a PHP file
+$page_file = "pages/".$request.".php";
 if (!file_exists($page_file)) {	
-	$page_file = "pages/404.xml";
+	$page_file = "pages/404.php";
 }
 
-// Load the XML file	
-$page_xml = simplexml_load_file($page_file);
-
-// Save title from XML file into PHP variable
-$page_title = $page_xml->title;
+// Load the page's PHP file	
+require $page_file;
 
 // Load relevant view
-include "views/".$page_xml->view;
+require "views/".$view.".view.php";
