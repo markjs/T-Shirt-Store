@@ -1,4 +1,5 @@
 <?php
 
 $title = "404";
-$view = "404";
+
+$views = array("404");

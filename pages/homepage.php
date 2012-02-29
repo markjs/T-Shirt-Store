@@ -2,4 +2,4 @@
 
 $title = "Home";
 
-$view = "index";
+$views = array("index");
