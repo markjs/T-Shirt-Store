@@ -1,5 +1,5 @@
 <?php
 
-require 'config.php';
-require 'functions.php';
-require 'routes.php';
+include 'config.php';
+include 'functions.php';
+include 'routes.php';
