@@ -15,11 +15,3 @@ if (!file_exists($page_file)) {
 
 // Load the page's PHP file	
 include $page_file;
-
-// Load relevant views
-foreach ($views as $view) {
-  $file_path = "views/".$view.".view.php";
-  if (file_exists($file_path)) {
-    include $file_path;
-  }
-}

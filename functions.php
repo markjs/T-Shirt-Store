@@ -6,3 +6,7 @@ function get_css_file($file) {
 ';
   return $link;
 }
+
+function view_file($view) {
+  return "views/".$view.".view.php";
+}
