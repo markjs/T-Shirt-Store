@@ -2,9 +2,6 @@
 
 $environment = "mamp";
 
-// database config
-$database = "";
-
 switch ($environment) {
   case 'mamp':
     $base_request = "";

@@ -22,10 +22,10 @@ if (is_valid_email($email)) {
       // A user already exists with that email address
     }
   } else {
-    // oh dear!
+    // Passwords did not match
   }  
 } else {
-  // not valid email
+  // Not a valid email address
 }
 
 
