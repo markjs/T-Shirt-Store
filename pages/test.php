@@ -1,3 +1,5 @@
 <?php
 
-echo md5("hello");
+if ($_SESSION['valid_id']) {
+	echo "Success!";
+}
