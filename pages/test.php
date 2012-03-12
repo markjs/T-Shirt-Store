@@ -1,5 +1,5 @@
 <?php
 
-if ($_SESSION['valid_id']) {
-	echo "Success!";
-}
+echo "<pre>";
+
+print_r($request_args);
