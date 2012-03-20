@@ -1,0 +1,1 @@
+		<li><a href="<?php echo $base_url."/categories/".$category->slug; ?>"><?php echo $category->title; ?></a></li>
