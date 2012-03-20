@@ -3,7 +3,9 @@
 include get_view_file('header');
 
 if ($request_args[0]) {
-	$product = mysql_fetch_object(mysql_query("SELECT * FROM products WHERE `slug` = '$request_args[0]' LIMIT 1"));
+	$result = mysql_query("SELECT * FROM products WHERE `slug` = '$request_args[0]' LIMIT 1");
+	
+	$product = mysql_fetch_object($result);
 	if ($product) {
 		include get_view_file('product_single');
 	} else {
@@ -12,7 +14,12 @@ if ($request_args[0]) {
 		include get_view_file('error');
 	}
 } else {
-	// No product slug has been entered	
+	// No product slug has been entered
+	$result = mysql_query("SELECT * FROM products");
+	while ($row = mysql_fetch_array($result)) {
+		$product = (object) $row;
+		include get_view_file('product_list');
+	}	
 }
 
 include get_view_file('footer');
