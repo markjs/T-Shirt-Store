@@ -3,7 +3,9 @@
 include get_view_file('header');
 
 if ($request_args[0]) {
-	$result = mysql_query("SELECT * FROM categories WHERE `slug` = '$request_args[0]' LIMIT 1");
+	$request_cat = mysql_real_escape_string($request_args[0]);
+		
+	$result = mysql_query("SELECT * FROM categories WHERE `slug` = '$request_cat' LIMIT 1");
 	
 	$category = mysql_fetch_object($result);
 	if ($category) {

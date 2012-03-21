@@ -3,7 +3,9 @@
 include get_view_file('header');
 
 if ($request_args[0]) {
-	$result = mysql_query("SELECT * FROM products WHERE `slug` = '$request_args[0]' LIMIT 1");
+	$request_prod = mysql_real_escape_string($request_args[0]);
+	
+	$result = mysql_query("SELECT * FROM products WHERE `slug` = '$request_prod' LIMIT 1");
 	
 	$product = mysql_fetch_object($result);
 	if ($product) {
