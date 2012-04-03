@@ -1,13 +1,17 @@
 <?php
 
 if ($_POST['email'] && $_POST['password']) {
+	// Store entered email and encrypted password
 	$email = mysql_real_escape_string($_POST['email']);
 	$password = md5(mysql_real_escape_string($_POST['password']));
 	
+	// Check credentials against database
 	$user_object = mysql_fetch_object(mysql_query(
 		"SELECT * FROM users WHERE `email` = '$email' AND `password` = '$password' LIMIT 1"
 		));
+		
 	if ($user_object) {
+		// Set sessions if credentials match
 		$_SESSION['valid_id'] = $user_object->id;
 		$_SESSION['valid_email'] = $user_object->email;
 		$_SESSION['valid_time'] = time();

@@ -42,14 +42,22 @@ if ($request_args[0] == "add") {
 		// Product or size not set
 	}
 } else if ($request_args[0] == "show") {
+	// Show the cart
 	$cart = $_SESSION['cart'];
+	// Get all cart items from the database
 	$request = mysql_query("SELECT * FROM `cart-items` WHERE `cart` = '$cart'");
-
 	include get_view_file('cart');
 } else if ($request_args[0] == "quantity") {
+	// Update the quantity
 	$cart_item = mysql_real_escape_string($_POST['cart-item-id']);
 	$quantity = mysql_real_escape_string($_POST['quantity']);
 	if ($cart_item != "" && $quantity != "") {
-		$request = mysql_query("UPDATE `cart-items` SET `quantity` = '$quantity' WHERE `id` = '$cart_item'");
+		if ($quantity == "0") {
+			// Delete cart item if quantity set to 0
+			$request = mysql_query("DELETE FROM `cart-items` WHERE `id` = '$cart_item'");
+		} else {
+			// Set quantity to value entered
+			$request = mysql_query("UPDATE `cart-items` SET `quantity` = '$quantity' WHERE `id` = '$cart_item'");
+		}
 	}
 }

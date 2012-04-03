@@ -20,6 +20,7 @@ if (is_valid_email($email)) {
       
     } else {
       // A user already exists with that email address
+			echo "A user already exists with that email address.";
     }
   } else {
     // Passwords did not match
