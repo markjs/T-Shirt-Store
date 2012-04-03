@@ -1,6 +1,7 @@
 <?php
 
 if ($request_args[0] == "add") {
+	// Save posted product and size
 	$product = mysql_real_escape_string($_POST['product']);
 	$size = mysql_real_escape_string($_POST['size']);
 	
@@ -14,19 +15,15 @@ if ($request_args[0] == "add") {
 			$object = mysql_fetch_object($result);
 			if ($object) {
 				// There is already an item of this, update the quantity
-				
-				// Increase quantity of cart item
 				$new_quantity = $object->quantity + 1;
 				$request = mysql_query("UPDATE `cart-items` SET `quantity` = '$new_quantity' WHERE `id` = '$object->id'");
 			} else {
 				// This item isn't yet in the cart
-				
 				// Create new cart item
 				$request = mysql_query("INSERT INTO `cart-items` (`cart`,`product`,`size`,`quantity`) VALUES ('$cart','$product','$size','1')");
 			}
 		} else {
 			// No cart is currently stored in sessions
-			
 			// Check if you're logged in
 			if ($_SESSION['valid_id']) {
 				$user_id = $_SESSION['valid_id'];
@@ -36,7 +33,6 @@ if ($request_args[0] == "add") {
 			// Create a cart
 			$request = mysql_query("INSERT INTO `carts` (`user`) VALUES ($user_id)");
 			$cart = mysql_insert_id();
-			var_dump($cart);
 			$_SESSION['cart'] = $cart;
 			
 			// Create cart-item
@@ -44,5 +40,16 @@ if ($request_args[0] == "add") {
 		}
 	} else {
 		// Product or size not set
+	}
+} else if ($request_args[0] == "show") {
+	$cart = $_SESSION['cart'];
+	$request = mysql_query("SELECT * FROM `cart-items` WHERE `cart` = '$cart'");
+
+	include get_view_file('cart');
+} else if ($request_args[0] == "quantity") {
+	$cart_item = mysql_real_escape_string($_POST['cart-item-id']);
+	$quantity = mysql_real_escape_string($_POST['quantity']);
+	if ($cart_item != "" && $quantity != "") {
+		$request = mysql_query("UPDATE `cart-items` SET `quantity` = '$quantity' WHERE `id` = '$cart_item'");
 	}
 }
