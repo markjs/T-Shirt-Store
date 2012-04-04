@@ -7,3 +7,4 @@
 		<script src="<?php echo $base_url; ?>/assets/js/app.js"></script>
 	</head>
 	<body>
+		<h1><a href="<?php echo $base_url; ?>">T-Shirt Store</a></h1>

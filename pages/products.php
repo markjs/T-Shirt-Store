@@ -1,7 +1,5 @@
 <?php
 
-include get_view_file('header');
-
 if ($request_args[0]) {
 	$request_prod = mysql_real_escape_string($request_args[0]);
 	
@@ -9,6 +7,8 @@ if ($request_args[0]) {
 	
 	$product = mysql_fetch_object($result);
 	if ($product) {
+		$title = "T-Shirt Store - ".$product->title;
+		include get_view_file('header');
 		include get_view_file('product_single');
 		include get_view_file('cart_full');
 	} else {
@@ -22,8 +22,8 @@ if ($request_args[0]) {
 	while ($row = mysql_fetch_array($result)) {
 		$product = (object) $row;
 		include get_view_file('product_list');
-		include get_view_file('cart_full');
-	}	
+	}
+	include get_view_file('cart_full');
 }
 
 include get_view_file('footer');

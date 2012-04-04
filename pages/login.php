@@ -23,6 +23,7 @@ if ($_POST['email'] && $_POST['password']) {
 		$_SESSION['valid_id'] = $user_object->id;
 		$_SESSION['valid_email'] = $user_object->email;
 		$_SESSION['valid_time'] = time();
+		header("Location:$base_url");
 	} else {
 		// Login credentials incorrect
 		echo "Your login credentials were incorrect";

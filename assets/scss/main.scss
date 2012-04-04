@@ -1,6 +1,7 @@
 body {
 	font-family:helvetica, sans-serif;
-	min-width:1000px;
+	width:1000px;
+	margin:0 auto;
 	position:relative;
 }
 
@@ -8,7 +9,8 @@ section.cart-full {
 	text-align:right;
 	position:fixed;
 	top:10px;
-	right:10px;
+	width:700px;
+	margin-left:300px;
 }
 
 th {
@@ -17,4 +19,16 @@ th {
 
 tr td:last-of-type::before {
 	content:"£";
+}
+
+ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+
+.price {
+	font-size:2em;
+	font-weight:bold;
+	margin-top:-20px;
 }

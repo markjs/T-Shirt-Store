@@ -2,9 +2,13 @@
 if ($request_args[0] == "") {
 	// Render checkout form if user logged in, login form if not
 	if ($_SESSION['valid_id']) {
+		$title = "T-Shirt Store - Checkout";
+		include get_view_file('header');
 		include get_view_file('checkout_form');
 	} else {
 		$_SESSION['return_to'] = "checkout";
+		$title = "T-Shirt Store - Login for Checkout";
+		include get_view_file('header');
 		include get_view_file('login_form');
 	}
 } else if ($request_args[0] == "auth") {
