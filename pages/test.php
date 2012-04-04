@@ -5,6 +5,6 @@ if ($request_args[0] == "clear") {
 	echo "Session cleared!";
 }
 
-?>
+echo str_pad(rand(0,9999),4,"0",STR_PAD_LEFT);
 
-<input type="number">
+?>

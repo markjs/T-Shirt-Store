@@ -1,3 +1,6 @@
+		<?php 
+		// Get all cart items from the database
+		$request = mysql_query("SELECT * FROM `cart-items` WHERE `cart` = '$cart'"); ?>
 		<section class="cart">
 			<h1>Cart</h1>
 			<table>
@@ -40,7 +43,7 @@
 					<td></td>
 					<td></td>
 					<td>Total</td>
-					<td><?php echo $total_price; ?></td>
+					<td><?php echo $total_price; $_SESSION['total_price'] = $total_price; ?></td>
 				</tr>
 			</table>
 			<a href="/checkout">Proceed to checkout &rarr;</a>

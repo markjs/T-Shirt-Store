@@ -24,7 +24,13 @@ if ($_POST['email'] && $_POST['password']) {
 }
 
 if ($_SESSION['valid_id']) {
-	echo "You are logged in as ".$_SESSION['valid_email'];
+	if ($_SESSION['return_to']) {
+		$location = $base_url."/".$_SESSION['return_to'];
+		unset($_SESSION['return_to']);
+		header("Location:$location");
+	} else {
+		echo "You are logged in as ".$_SESSION['valid_email'];		
+	}
 } else {
 	include get_view_file('login_form');
 }

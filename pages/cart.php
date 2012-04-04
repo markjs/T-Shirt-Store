@@ -44,8 +44,6 @@ if ($request_args[0] == "add") {
 } else if ($request_args[0] == "show") {
 	// Show the cart
 	$cart = $_SESSION['cart'];
-	// Get all cart items from the database
-	$request = mysql_query("SELECT * FROM `cart-items` WHERE `cart` = '$cart'");
 	include get_view_file('cart');
 } else if ($request_args[0] == "quantity") {
 	// Update the quantity
