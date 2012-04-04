@@ -1,3 +1,20 @@
 body {
 	font-family:helvetica, sans-serif;
+	min-width:1000px;
+	position:relative;
+}
+
+section.cart-full {
+	text-align:right;
+	position:fixed;
+	top:10px;
+	right:10px;
+}
+
+th {
+	text-align:center;
+}
+
+tr td:last-of-type::before {
+	content:"£";
 }

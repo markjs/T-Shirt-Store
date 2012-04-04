@@ -1,5 +1,13 @@
 <?php
 
+// Clear session if user wishes to log out
+if ($request_args[0] == "out") {
+	unset($_SESSION['valid_id']);
+	unset($_SESSION['valid_email']);
+	unset($_SESSION['valid_time']);
+	header("Location:$base_url");
+}
+
 if ($_POST['email'] && $_POST['password']) {
 	// Store entered email and encrypted password
 	$email = mysql_real_escape_string($_POST['email']);
@@ -29,7 +37,8 @@ if ($_SESSION['valid_id']) {
 		unset($_SESSION['return_to']);
 		header("Location:$location");
 	} else {
-		echo "You are logged in as ".$_SESSION['valid_email'];		
+		echo "You are logged in as ".$_SESSION['valid_email'];	
+		echo "<br><a href='/login/out'>Log out</a>";	
 	}
 } else {
 	include get_view_file('login_form');

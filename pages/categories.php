@@ -13,6 +13,7 @@ if ($request_args[0]) {
 		while ($row = mysql_fetch_array($result)) {
 			$product = (object) $row;
 			include get_view_file('product_list');
+			include get_view_file('cart_full');
 		}
 	} else {
 		// No category with that slug found
@@ -26,6 +27,7 @@ if ($request_args[0]) {
 		$category = (object) $row;
 		include get_view_file('category_list');
 	}	
+	include get_view_file('cart_full');
 }
 
 include get_view_file('footer');

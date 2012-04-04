@@ -38,11 +38,12 @@ if ($request_args[0] == "add") {
 			// Create cart-item
 			$request = mysql_query("INSERT INTO `cart-items` (`cart`,`product`,`size`,`quantity`) VALUES ('$cart','$product','$size','1')");
 		}
+		header("Location:$base_url");
 	} else {
 		// Product or size not set
 	}
 } else if ($request_args[0] == "show") {
-	// Show the cart
+	// Show the cart and return home
 	$cart = $_SESSION['cart'];
 	include get_view_file('cart');
 } else if ($request_args[0] == "quantity") {
@@ -50,12 +51,13 @@ if ($request_args[0] == "add") {
 	$cart_item = mysql_real_escape_string($_POST['cart-item-id']);
 	$quantity = mysql_real_escape_string($_POST['quantity']);
 	if ($cart_item != "" && $quantity != "") {
-		if ($quantity == "0") {
-			// Delete cart item if quantity set to 0
+		if ($quantity <= "0") {
+			// Delete cart item if quantity set to 0 (or negative)
 			$request = mysql_query("DELETE FROM `cart-items` WHERE `id` = '$cart_item'");
 		} else {
 			// Set quantity to value entered
 			$request = mysql_query("UPDATE `cart-items` SET `quantity` = '$quantity' WHERE `id` = '$cart_item'");
 		}
+		header("Location:$base_url");
 	}
 }

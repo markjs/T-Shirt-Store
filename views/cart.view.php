@@ -1,6 +1,6 @@
 		<?php 
 		// Get all cart items from the database
-		$request = mysql_query("SELECT * FROM `cart-items` WHERE `cart` = '$cart'"); ?>
+		$cart_request = mysql_query("SELECT * FROM `cart-items` WHERE `cart` = '$cart'"); ?>
 		<section class="cart">
 			<h1>Cart</h1>
 			<table>
@@ -11,16 +11,16 @@
 					<th>Quantity</th>
 					<th>Total Price</th>
 				</thead>
-			<?php while ($row = mysql_fetch_array($request)) { 
+			<?php while ($row = mysql_fetch_array($cart_request)) { 
 				$item = (object) $row;
 				
 				// Get the product object for this product
-				$result = mysql_query("SELECT * FROM `products` WHERE `id` = '$item->product'");
-				$product = mysql_fetch_object($result);
+				$cart_result = mysql_query("SELECT * FROM `products` WHERE `id` = '$item->product'");
+				$product = mysql_fetch_object($cart_result);
 				
 				// Get the size object for this product
-				$result = mysql_query("SELECT * FROM `sizes` WHERE `id` = '$item->size'");
-				$size = mysql_fetch_object($result);
+				$cart_result = mysql_query("SELECT * FROM `sizes` WHERE `id` = '$item->size'");
+				$size = mysql_fetch_object($cart_result);
 			?>
 				<tr>
 					<td><a href="<?php echo $base_url."/products/".$product->slug; ?>"><?php echo $product->title; ?></a></td>

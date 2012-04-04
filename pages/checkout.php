@@ -54,8 +54,8 @@ if ($request_args[0] == "") {
 	echo "<a href='/checkout/done'>Yup &rarr;</a>";
 } else if ($request_args[0] == "done") {
 	// Done
-	// Sets the cart status to 1, to alert shop that they need to dispatch stuff to this person
-	$request = mysql_query("UPDATE `carts` SET `status` = '1' WHERE `id` = '".$_SESSION['cart']."'");
+	// Sets the cart status to 1 and ensures it's attached to the correct user, to alert shop that they need to dispatch stuff to this person
+	$request = mysql_query("UPDATE `carts` SET `status` = '1', SET `user` = '".$_SESSION['valid_id']."' WHERE `id` = '".$_SESSION['cart']."'");
 	// Clears the session variables so they don't mess things up
 	unset($_SESSION['cart']);
 	unset($_SESSION['total_price']);
