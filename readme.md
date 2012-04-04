@@ -54,3 +54,26 @@ Many of the other views contain less code, and are just used for a very specific
 #### Including View Files
 
 View files are included from within the page controllers when necessary. A common function was built to aid in getting the view files included. This function simply appends the `.view.php` extension onto the requested view to include the file more simply and cleanly, making the code much more readable and consistent. This also allows for quick customisation, should it be decided that `.view.php` be changed to `.html.php`, for example, this can be changed in one place, as opposed to having to trawl through many pages to refactor multiple repetitions of the function.
+
+### Database Structure
+
+The paper ER diagram is attached and I shall briefly explain the design decisions here.
+
+One of the key focuses when designing the database structure was reusability and flexibility. This was primarily accomplished through separation of concerns - distributing data out to multiple tables to allow more complex relationships, enhancing the data stored.
+
+The key holding table `cart-items` bridges the gap between a user and the products they order, through a `carts` table. The product is also referred to with a relationship to the `products` table and a `sizes` table, with a `size-stock` table keeping stock on the back end and preventing users from purchasing products out of stock.
+
+### Purchase Walkthrough
+
+The process of landing at the home page and carrying through to ordering products goes as follows:
+
+- View individual products by clicking on their titles. Products on the home page can also be filtered by category or search term.
+- Select a size from the drop down select box (showing the stock level for each size) and add to cart.
+- The cart can be altered through changing the quantity of products and adding new products.
+- Proceeding to checkout requires you to log in. If you are already logged in you will immediately see the payment entry form, if not you must first log in before seeing this form.
+- Upon filling in the details, the application accesses the REST cardAuth service API to verify the details before asking the user to confirm.
+- Upon confirmation the cart is cleared from sessions and the status in the database changes to alert the store owners of their need to ship some produce.
+
+### Graphical Design
+
+Graphically, no effort really went into styling the view of the application. As this project was built to demonstrate programming and database manipulative capabilities, the user interface was simply styled to bring the interactive elements of the shopping cart to the fore.
