@@ -2,23 +2,21 @@
 				<input type="hidden" name="product" value="<?php echo $product->id; ?>">
 			
 			<?php
+			// Getting stock values for current product
 			$result = mysql_query("SELECT * FROM `size-stock` WHERE `product` = '$product->id'");
-						
+			
 			while ($row = mysql_fetch_array($result)) {
-
 				$size_stock = (object) $row;
-
 				$new_result = mysql_query("SELECT * FROM `sizes` WHERE `id` = '$size_stock->size' LIMIT 1");
 				$size = mysql_fetch_object($new_result);
-
-				// $size->title;
-				// $size_stock->stock;
 				
 				if ($size_stock->stock) {
+					// Adding an <option> element if the product is in stock in this size
 					$options .= '<option value="'.$size->id.'">'.$size->title.' ('.$size_stock->stock.' in stock)</option>';
 				}
 			}
 			
+			// Printing out options if they're in stock, or an out of stock message if not
 			if ($options) {
 				echo '<select name="size">';
 				echo $options;
