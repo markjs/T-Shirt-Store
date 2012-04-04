@@ -63,6 +63,11 @@ One of the key focuses when designing the database structure was reusability and
 
 The key holding table `cart-items` bridges the gap between a user and the products they order, through a `carts` table. The product is also referred to with a relationship to the `products` table and a `sizes` table, with a `size-stock` table keeping stock on the back end and preventing users from purchasing products out of stock.
 
+A few points to note:
+
+- User `type` determines the level of access a user account has. This would, in the future, enable restricted access to administrative functions, and allows for extra expansion if necessary.
+- Cart `status` determines what status an order is at. By default this status is `0` before ordering is complete. Once the order is completed, this changes to `1`, and expansion would be possible on this to provide, for example, a status of `2` when the order has been shipped and `3` when delivered.
+
 ### Purchase Walkthrough
 
 The process of landing at the home page and carrying through to ordering products goes as follows:
