@@ -40,4 +40,7 @@ include get_view_file('header');
 	</ul>
 </section>
 
-<?php include get_view_file('cart_full'); ?>
+<?php
+include get_view_file('cart_full');
+include get_view_file('footer');
+?>

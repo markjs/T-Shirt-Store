@@ -11,3 +11,5 @@ while ($row = mysql_fetch_array($request)) {
 	include get_view_file('product_list');
 }
 include get_view_file('cart_full');
+
+include get_view_file('footer');

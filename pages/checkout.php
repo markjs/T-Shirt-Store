@@ -67,3 +67,5 @@ if ($request_args[0] == "") {
 	
 	echo "Thanks, your order has been placed.";
 }
+
+include get_view_file('footer');
