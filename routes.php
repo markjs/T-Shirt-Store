@@ -4,7 +4,7 @@
 // Anything after the base URL goes in here as a string
 $request = trim(substr($_SERVER['REQUEST_URI'],strlen($base_request)),"/");
 
-// Redirect index.php back home, in case that's where the work is accessed by tutor
+// Redirect index.php back home, in case that's how the project is accessed by tutor
 if ($request == "index.php") {
 	header("Location:$base_url");
 }
